@@ -1,0 +1,12 @@
+FROM openjdk:17-jdk-alpine
+
+COPY . . 
+RUN ./mvnw clean package -DskipTests
+
+
+RUN mkdir /app && cp target/*.jar /app/app.jar
+# Copy your app's code to the container image.
+WORKDIR /app
+
+# Run your app.
+CMD ["java", "-jar", "app.jar"]

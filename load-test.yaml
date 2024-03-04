@@ -1,0 +1,3 @@
+steps:
+- name: 'grafana/k6'
+  args: ['run', 'k6/script.js']
