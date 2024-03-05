@@ -1,0 +1,12 @@
+steps:
+- name: gcr.io/k8s-skaffold/pack
+  entrypoint: pack
+  args:
+  - build
+  - us-central1-docker.pkg.dev/m2c-demo/container/true-demo:latest
+  - --builder
+  - paketobuildpacks/builder:base
+  - --cache-image
+  - us-central1-docker.pkg.dev/m2c-demo/container/true-demo-cache:latest
+  - --publish
+
