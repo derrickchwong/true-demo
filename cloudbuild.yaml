@@ -27,7 +27,7 @@ steps:
   - --publish
 - name: joshkeegan/zip:latest
   id: zip 
-  script: 'zip -r /workspaces/true-demo-repository.zip /workspace/.m2/repository' 
+  script: 'zip -r /workspace/true-demo-repository.zip /workspace/.m2/repository' 
 - name: gcr.io/cloud-builders/gsutil
   id: copy-m2-repo-to-gcs
   args: ['cp', '/workspace/true-demo-repository.zip', 'gs://m2c-demo-maven-cache/true-demo-repository.zip']
