@@ -12,19 +12,23 @@ steps:
 - name: alpine
   id: chmod 
   script: 'chmod -R 777 /workspace/.m2'
-- name: gcr.io/k8s-skaffold/pack
-  id: buildpack
-  entrypoint: pack
-  args:
-  - build
-  - us-central1-docker.pkg.dev/m2c-demo/container/true-demo:latest
-  - --builder
-  - paketobuildpacks/builder:base
-  - --cache-image
-  - us-central1-docker.pkg.dev/m2c-demo/container/true-demo-cache:latest
-  - --volume
-  - /workspace/.m2:/home/cnb/.m2:rw
-  - --publish
+- name: 'gcr.io/k8s-skaffold/skaffold'
+  id: skaffold-build
+  entrypoint: skaffold
+  args: ['build', '--file-output=/workspace/skaffold-output.json', '-f', 'skaffold-buildpack.yaml']
+# - name: gcr.io/k8s-skaffold/pack
+#   id: buildpack
+#   entrypoint: pack
+#   args:
+#   - build
+#   - us-central1-docker.pkg.dev/m2c-demo/container/true-demo:latest
+#   - --builder
+#   - paketobuildpacks/builder:base
+#   - --cache-image
+#   - us-central1-docker.pkg.dev/m2c-demo/container/true-demo-cache:latest
+#   - --volume
+#   - /workspace/.m2:/home/cnb/.m2:rw
+#   - --publish
 - name: joshkeegan/zip:latest
   id: zip 
   script: 'zip -r /workspace/true-demo-repository.zip /workspace/.m2/repository' 
@@ -43,6 +47,8 @@ steps:
   - 'true-pipeline'
   - '--region'
   - 'us-central1'
+  - '--build-artifacts'
+  - '/workspace/skaffold-output.json'
 
 
 # - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'

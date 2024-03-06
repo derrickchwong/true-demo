@@ -1,0 +1,7 @@
+apiVersion: skaffold/v4beta8
+kind: Config
+build:
+  artifacts:
+  - image: us-central1-docker.pkg.dev/m2c-demo/container/true-demo
+    buildpacks:
+      builder: 'paketobuildpacks/builder:base'
