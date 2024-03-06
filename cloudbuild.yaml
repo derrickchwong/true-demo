@@ -32,13 +32,27 @@ steps:
   id: copy-m2-repo-to-gcs
   args: ['cp', '/workspace/true-demo-repository.zip', 'gs://m2c-demo-maven-cache/true-demo-repository.zip']
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  id: deploy
+  id: create-release
   entrypoint: gcloud
   args:
-  - 'run'
-  - 'deploy'
-  - 'true-demo'
-  - '--image'
-  - 'us-central1-docker.pkg.dev/m2c-demo/container/true-demo:latest'
+  - 'deploy' 
+  - 'releases'
+  - 'create' 
+  - 'true-demo-release-$SHORT_SHA'
+  - '--delivery-pipeline'
+  - 'true-pipeline'
   - '--region'
   - 'us-central1'
+
+
+# - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+#   id: deploy
+#   entrypoint: gcloud
+#   args:
+#   - 'run'
+#   - 'deploy'
+#   - 'true-demo'
+#   - '--image'
+#   - 'us-central1-docker.pkg.dev/m2c-demo/container/true-demo:latest'
+#   - '--region'
+#   - 'us-central1'
