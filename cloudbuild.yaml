@@ -4,7 +4,7 @@ steps:
   entrypoint: mvn
   args: ['test', '-Dmaven.repo.local=/workspace/.m2']
 - name: alpine
-  script: 'chown -R cnb:cnb /workspace/.m2'
+  script: 'chmod -R 777 /workspace/.m2'
 - name: gcr.io/k8s-skaffold/pack
   entrypoint: pack
   args:
