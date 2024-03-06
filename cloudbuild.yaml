@@ -2,7 +2,7 @@ steps:
 # - name: gcr.io/cloud-builders/gsutil
 #   id: copy-m2-repo-from-gcs
 #   args: ['cp', '-c', 'gs://m2c-demo-maven-cache/true-demo-repository.zip', '/workspace/true-demo-repository.zip']
-# - name: alpine
+# - name: ubuntu
 #   id: unzip 
 #   script: '[ -f "/workspace/true-demo-repository.zip" ] && unzip "/workspace/true-demo-repository.zip" -d /workspace/.m2/repository' 
 - name: maven:3-eclipse-temurin-17
@@ -25,7 +25,7 @@ steps:
   - --volume
   - /workspace/.m2:/home/cnb/.m2:rw
   - --publish
-- name: alpine
+- name: ubuntu
   id: zip 
   script: 'zip /workspaces/true-demo-repository.zip /workspace/.m2/repository' 
 - name: gcr.io/cloud-builders/gsutil
