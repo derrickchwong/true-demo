@@ -1,0 +1,6 @@
+steps:
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  script: 'gcloud run services describe true-demo --region us-central1 --format="value(status.url)" > /workspace/url'
+- name: 'grafana/k6'
+  args: ['run', '-e', 'SERVICE_URL=$(cat /workspace/url)', 'k6/script.js']
+

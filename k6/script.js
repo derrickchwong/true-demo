@@ -6,8 +6,14 @@ export const options = {
 };
 
 export default function() {
-  // Make a request to the API
-  const res = http.get('http://35.226.75.99:8080/greeting/world');
+  
+//   const bearer = `${__ENV.TOKEN}`;
+//   const headers = {
+//     Authorization: `Bearer ${bearer}`,
+//   };
+//   const res = http.get(`${__ENV.SERVICE_URL}/greeting/world`, { headers: headers });
+  
+  const res = http.get(`${__ENV.SERVICE_URL}/greeting/world`);
 
   // Check the status code
   if (res.status !== 200) {
