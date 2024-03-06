@@ -8,7 +8,7 @@ steps:
 - name: maven:3-eclipse-temurin-17
   id: maven-build
   entrypoint: mvn
-  args: ['test', '-Dmaven.repo.local=/workspace/.m2']
+  args: ['test', '-Dmaven.repo.local=/workspace/.m2/repository']
 - name: alpine
   id: chmod 
   script: 'chmod -R 777 /workspace/.m2'
@@ -27,7 +27,7 @@ steps:
   - --publish
 - name: joshkeegan/zip:latest
   id: zip 
-  script: 'zip /workspaces/true-demo-repository.zip /workspace/.m2/repository' 
+  script: 'zip -r /workspaces/true-demo-repository.zip /workspace/.m2/repository' 
 - name: gcr.io/cloud-builders/gsutil
   id: copy-m2-repo-to-gcs
   args: ['cp', '/workspace/true-demo-repository.zip', 'gs://m2c-demo-maven-cache/true-demo-repository.zip']
