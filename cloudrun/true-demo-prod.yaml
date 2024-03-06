@@ -10,7 +10,7 @@ spec:
       - name: true-demo
         image: us-central1-docker.pkg.dev/m2c-demo/container/true-demo
         ports:
-        - name: http
+        - name: http1
           containerPort: 8080
         resources:
           limits:
