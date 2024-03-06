@@ -6,7 +6,7 @@ build:
     buildpacks:
       builder: 'paketobuildpacks/builder:base'
       volumes: 
-      - host: '/workspace/.m2c'
+      - host: '/workspace/.m2'
         target: '/home/cnb/.m2'
         options: 'rw'
                 
