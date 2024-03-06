@@ -1,8 +1,7 @@
 steps:
-# maven test 
 - name: gcr.io/cloud-builders/gsutil
   id: copy-m2-repo-from-gcs
-  args: ['cp', 'gs://m2c-demo-maven-cache/true-demo-repository.zip', '/workspace/true-demo-repository.zip']
+  args: ['cp', '-c', 'gs://m2c-demo-maven-cache/true-demo-repository.zip', '/workspace/true-demo-repository.zip']
 - name: alpine
   id: unzip 
   script: '[ -f "/workspace/true-demo-repository.zip" ] && unzip "/workspace/true-demo-repository.zip" -d /workspace/.m2/repository' 
