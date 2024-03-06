@@ -1,0 +1,18 @@
+# knative service
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: true-demo-prod
+spec:
+  template:
+    spec:
+      containers:
+      - name: true-demo
+        image: us-central1-docker.pkg.dev/m2c-demo/container/true-demo
+        ports:
+        - name: http
+          containerPort: 8080
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1Gi

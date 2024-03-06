@@ -1,0 +1,22 @@
+apiVersion: skaffold/v4beta8
+kind: Config
+build:
+  artifacts:
+  - image: us-central1-docker.pkg.dev/m2c-demo/container/true-demo
+    buildpacks:
+      builder: 'paketobuildpacks/builder:base'
+      volumes: 
+      - host: '/workspace/.m2c'
+        target: '/home/cnb/.m2'
+        options: 'rw'
+                
+profiles:
+- name: true-demo-dev
+  manifests: 
+    rawYaml:
+    - cloudrun/true-demo-dev.yaml
+- name: true-demo-prod
+  manifests: 
+    rawYaml:
+    - cloudrun/true-demo-prod.yaml
+      

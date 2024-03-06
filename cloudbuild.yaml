@@ -15,7 +15,7 @@ steps:
 - name: 'gcr.io/k8s-skaffold/skaffold'
   id: skaffold-build
   entrypoint: skaffold
-  args: ['build', '--file-output=/workspace/skaffold-output.json', '-f', 'skaffold-buildpack.yaml']
+  args: ['build', '--file-output=/workspace/skaffold-output.json', '-f', 'skaffold-cloudrun.yaml']
 # - name: gcr.io/k8s-skaffold/pack
 #   id: buildpack
 #   entrypoint: pack
@@ -47,6 +47,8 @@ steps:
   - 'true-pipeline'
   - '--region'
   - 'us-central1'
+  - '--skaffold-file'
+  - 'skaffold-cloudrun.yaml'
   - '--build-artifacts'
   - '/workspace/skaffold-output.json'
 
