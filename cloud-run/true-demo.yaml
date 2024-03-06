@@ -1,0 +1,13 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: true-demo-dev
+spec:
+  template:
+    spec:
+      containers:
+      - image: us-central1-docker.pkg.dev/m2c-demo/container/true-demo
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1Gi

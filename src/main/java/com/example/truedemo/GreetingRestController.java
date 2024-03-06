@@ -13,6 +13,6 @@ public class GreetingRestController {
     @GetMapping("/greeting/{name}")
     public String greeting(@PathVariable String name) {
         log.info("Greeting {}", name);
-        return "Hello, " + name + "!";
+        return "Hello, " + name + "! How are you? Great! Yeah!!";
     }
 }
