@@ -2,7 +2,9 @@ steps:
 # maven test 
 - name: maven:3-eclipse-temurin-17
   entrypoint: mvn
-  args: ['test']
+  args: ['test', '-Dmaven.repo.local=/workspace/.m2']
+- name: alpine
+  script: 'chown -R cnb:cnb /workspace/.m2'
 - name: gcr.io/k8s-skaffold/pack
   entrypoint: pack
   args:
@@ -12,6 +14,8 @@ steps:
   - paketobuildpacks/builder:base
   - --cache-image
   - us-central1-docker.pkg.dev/m2c-demo/container/true-demo-cache:latest
+  - --volume
+  - /workspace/.m2:/home/cnb/.m2:rw
   - --publish
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
