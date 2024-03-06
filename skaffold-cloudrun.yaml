@@ -9,14 +9,21 @@ build:
       - host: '/workspace/.m2'
         target: '/home/cnb/.m2'
         options: 'rw'
-                
+
 profiles:
 - name: true-demo-dev
   manifests: 
     rawYaml:
     - cloudrun/true-demo-dev.yaml
+  deploy:
+    cloudrun:
+      projectid: m2c-demo
+      region: us-central1
 - name: true-demo-prod
   manifests: 
     rawYaml:
     - cloudrun/true-demo-prod.yaml
-      
+  deploy:
+    cloudrun:
+      projectid: m2c-demo
+      region: us-central1
