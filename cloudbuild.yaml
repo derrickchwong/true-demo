@@ -16,26 +16,12 @@ steps:
   id: skaffold-build
   entrypoint: skaffold
   args: ['build', '--file-output=/workspace/skaffold-output.json', '-f', 'skaffold-k8s.yaml']
-# - name: gcr.io/k8s-skaffold/pack
-#   id: buildpack
-#   entrypoint: pack
-#   args:
-#   - build
-#   - us-central1-docker.pkg.dev/m2c-demo/container/true-demo:latest
-#   - --builder
-#   - paketobuildpacks/builder:base
-#   - --cache-image
-#   - us-central1-docker.pkg.dev/m2c-demo/container/true-demo-cache:latest
-#   - --volume
-#   - /workspace/.m2:/home/cnb/.m2:rw
-#   - --publish
 - name: joshkeegan/zip:latest
   id: zip 
   script: 'zip -r /workspace/true-demo-repository.zip /workspace/.m2/repository' 
 - name: gcr.io/cloud-builders/gsutil
   id: copy-m2-repo-to-gcs
   args: ['cp', '/workspace/true-demo-repository.zip', 'gs://m2c-demo-maven-cache/true-demo-repository.zip']
-
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   id: create-release
   entrypoint: gcloud
