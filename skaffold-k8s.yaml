@@ -9,10 +9,10 @@ build:
       - host: '/workspace/.m2'
         target: '/home/cnb/.m2'
         options: 'rw'
-profiles:
-- name: true-demo-k8s-dev
-  manifests: 
-    rawYaml:
-    - k8s/*.yml
-  deploy:
-    kubectl: {}
+# profiles:
+# - name: true-demo-k8s-dev
+manifests: 
+  rawYaml:
+  - k8s/*.yml
+deploy:
+  kubectl: {}
