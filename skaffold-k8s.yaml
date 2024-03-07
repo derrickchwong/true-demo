@@ -13,6 +13,6 @@ profiles:
 - name: true-demo-k8s-dev
   manifests: 
     rawYaml:
-    - k8s/*.yaml
+    - k8s/*.yml
   deploy:
     kubectl: {}
