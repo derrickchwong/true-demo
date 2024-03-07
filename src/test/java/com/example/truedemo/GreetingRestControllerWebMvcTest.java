@@ -42,7 +42,7 @@ public class GreetingRestControllerWebMvcTest {
     public void shouldReturnDefaultMessage() throws Exception {
         mockMvc.perform(get("/greeting/Derrick"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Hello, Derrick! How are you? Great! Yeah!!"));
+                .andExpect(content().string("Hello, Derrick!"));
     }
 
     @Test
