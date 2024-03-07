@@ -15,7 +15,7 @@ steps:
 - name: 'gcr.io/k8s-skaffold/skaffold'
   id: skaffold-build
   entrypoint: skaffold
-  args: ['build', '--file-output=/workspace/skaffold-output.json', '-f', 'skaffold-cloudrun.yaml']
+  args: ['build', '--file-output=/workspace/skaffold-output.json', '-f', 'skaffold-k8s.yaml']
 # - name: gcr.io/k8s-skaffold/pack
 #   id: buildpack
 #   entrypoint: pack
